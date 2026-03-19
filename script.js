@@ -8,6 +8,10 @@ let computerScore = 0;
 
 buttonsContainer.addEventListener('click', (event) => {
     const target = event.target.id;
+    const validOptions = ['rock','paper','scissors'];
+    if(!validOptions.includes(target)) {
+        return;
+    }
     playRound(target,getComputerChoice());
 })
 
@@ -39,7 +43,3 @@ function playRound(humanChoice, computerChoice) {
     computerScore++;
     return;
 }
-
-console.log(`Score:
-    Human: ${humanScore} wins
-    Computer: ${computerScore} wins`);
