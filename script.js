@@ -1,5 +1,15 @@
+const buttonsContainer = document.querySelector("#player-buttons");
+const resultText = document.querySelector("#result");
+const humanChoiceText = document.querySelector("#human");
+const computerChoiceText = document.querySelector("#computer");
+
 let humanScore = 0;
 let computerScore = 0;
+
+buttonsContainer.addEventListener('click', (event) => {
+    const target = event.target.id;
+    playRound(target,getComputerChoice());
+})
 
 function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
@@ -11,30 +21,23 @@ function getComputerChoice() {
     return 'scissors';
 }
 
-function getHumanChoice() {
-    return prompt("Enter you\'r choice:\nrock,paper,scissors").toLowerCase();
-}
-
 function playRound(humanChoice, computerChoice) {
+    computerChoiceText.textContent = `Computer: ${computerChoice}`;
+    humanChoiceText.textContent = `Human: ${humanChoice}`;
+
     if (humanChoice === computerChoice) {
-        console.log("It\'s a draw!");
+        resultText.textContent = "Its a draw!";
         return;
     } else if ((humanChoice === 'rock' && computerChoice === 'scissors')
         || (humanChoice === 'paper' && computerChoice === 'rock')
         || (humanChoice === 'scissors' && computerChoice === 'paper')) {
-        console.log("Human wins!");
+        resultText.textContent = "Human wins!";
         humanScore++;
         return;
     }
-    console.log("Computer wins!");
+    resultText.textContent = "Computer wins!";
     computerScore++;
     return;
-}
-
-for (let i = 0; i < 5; i++) {
-    const computerChoice = getComputerChoice();
-    const humanChoice = getHumanChoice();
-    playRound(humanChoice,computerChoice);
 }
 
 console.log(`Score:
