@@ -1,5 +1,7 @@
 const buttonsContainer = document.querySelector("#player-buttons");
 const resultText = document.querySelector("#result");
+const humanChoiceText = document.querySelector("#human");
+const computerChoiceText = document.querySelector("#computer");
 
 let humanScore = 0;
 let computerScore = 0;
@@ -20,6 +22,9 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    computerChoiceText.textContent = `Computer: ${computerChoice}`;
+    humanChoiceText.textContent = `Human: ${humanChoice}`;
+
     if (humanChoice === computerChoice) {
         resultText.textContent = "Its a draw!";
         return;
