@@ -11,6 +11,7 @@ body {
     height: 100vh;
     display:flex;
     flex-direction: column;
+    font-size: 26px;
 }
 
 .container {
@@ -26,6 +27,7 @@ body {
 #result {
     font-size: 48px;
     font-weight: 900;
+    margin-bottom: 20px;
 }
 
 .choices-container {
@@ -38,7 +40,6 @@ body {
     height: 200px;
     border: 2px solid lightskyblue;
     border-radius: 10px;
-    font-size: 24px;
 
     display: flex;
     flex-direction: column;
@@ -47,19 +48,25 @@ body {
     flex-wrap: wrap;
 }
 
+.choice-title {
+    text-align: center;
+}
+
 .btn-choice {
     padding: 10px 20px;
     margin-left: 20px;
     border: 2px solid #0d6efd;
     background-color: #0d6efd;
     color: #fff;
+    font-size: 20px;
 }
 
 .footer {
     display: flex;
     justify-content: space-between;
-    background-color: #f3f3f3d0;
+    background-color: #f7f6f6e0;
     padding: 50px 350px;
+    font-size: 18px;
 }
 
 .footer p {

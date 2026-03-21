@@ -1,18 +1,18 @@
 const buttonsContainer = document.querySelector("#player-buttons");
 const resultText = document.querySelector("#result");
-const humanChoiceText = document.querySelector("#human");
-const computerChoiceText = document.querySelector("#computer");
 
 let humanScore = 0;
 let computerScore = 0;
+let lastHumanChoice = '';
+let lastComputerChoice = '';
 
 buttonsContainer.addEventListener('click', (event) => {
     const target = event.target.id;
-    const validOptions = ['rock','paper','scissors'];
-    if(!validOptions.includes(target)) {
+    const validOptions = ['rock', 'paper', 'scissors'];
+    if (!validOptions.includes(target)) {
         return;
     }
-    playRound(target,getComputerChoice());
+    playRound(target, getComputerChoice());
 })
 
 function getComputerChoice() {
@@ -26,8 +26,7 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    computerChoiceText.textContent = `Computer: ${computerChoice}`;
-    humanChoiceText.textContent = `Human: ${humanChoice}`;
+    displayChoiceImage(humanChoice, computerChoice);
 
     if (humanChoice === computerChoice) {
         resultText.textContent = "Its a draw!";
@@ -42,4 +41,25 @@ function playRound(humanChoice, computerChoice) {
     resultText.textContent = "Computer wins!";
     computerScore++;
     return;
+}
+
+function displayChoiceImage(humanChoice, computerChoice) {
+    // Hide the last turn.
+    if (lastHumanChoice !== '' && lastComputerChoice !== '') {
+        const lastHumanChoiceImage = document.querySelector(`#${lastHumanChoice}-human`)
+        const lastComputerChoiceImage = document.querySelector(`#${lastComputerChoice}-computer`)
+
+        lastHumanChoiceImage.style.display = 'none';
+        lastComputerChoiceImage.style.display = 'none';
+    }
+
+    // Display current turn.
+    const humanChoiceImage = document.querySelector(`#${humanChoice}-human`)
+    const computerChoiceImage = document.querySelector(`#${computerChoice}-computer`)
+
+    humanChoiceImage.style.display = 'block';
+    computerChoiceImage.style.display = 'block';
+
+    lastHumanChoice = humanChoice;
+    lastComputerChoice = computerChoice;
 }
